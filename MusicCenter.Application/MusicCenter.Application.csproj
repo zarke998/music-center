@@ -8,4 +8,9 @@
     <ProjectReference Include="..\MusicCenter.Domain\MusicCenter.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
 </Project>
