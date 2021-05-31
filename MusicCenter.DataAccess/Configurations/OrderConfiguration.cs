@@ -14,6 +14,8 @@ namespace MusicCenter.EfDataAccess.Configurations
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.Property(x => x.ShippingAdress).IsRequired();
+
+            builder.HasMany(x => x.OrderProducts).WithOne(op => op.Order).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
