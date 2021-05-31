@@ -14,5 +14,8 @@ namespace MusicCenter.Domain.Entities
         public float? Discount { get; set; }
         public int Quantity { get; set; }
         public string ImageUrl { get; set; }
+
+        public int BrandId { get; set; }
+        public Brand Brand { get; set; }
     }
 }
