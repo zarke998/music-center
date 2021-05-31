@@ -13,6 +13,8 @@ namespace MusicCenter.Domain.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public Gender Gender { get; set; }
+
+        public ICollection<Order> Orders { get; set; } = new HashSet<Order>();
     }
 
     public enum Gender
