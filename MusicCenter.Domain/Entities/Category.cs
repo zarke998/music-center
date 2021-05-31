@@ -8,6 +8,8 @@ namespace MusicCenter.Domain.Entities
 {
     public class Category : Entity
     {
-        public string Name { get; set; }
+        public string Name { get; set; }       
+        
+        public ICollection<ProductCategory> CategoryProducts { get; set; } = new HashSet<ProductCategory>();
     }
 }

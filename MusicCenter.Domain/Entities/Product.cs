@@ -17,5 +17,7 @@ namespace MusicCenter.Domain.Entities
 
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
+
+        public ICollection<ProductCategory> ProductCategories { get; set; } = new HashSet<ProductCategory>();
     }
 }
