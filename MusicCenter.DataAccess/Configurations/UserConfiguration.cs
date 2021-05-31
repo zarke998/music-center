@@ -17,6 +17,8 @@ namespace MusicCenter.EfDataAccess.Configurations
             builder.Property(x => x.LastName).IsRequired();
             builder.Property(x => x.Email).IsRequired();
             builder.Property(x => x.Password).IsRequired();
+
+            builder.HasMany(x => x.Orders).WithOne(o => o.User).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
