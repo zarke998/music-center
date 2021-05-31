@@ -15,6 +15,7 @@ namespace MusicCenter.Domain.Entities
         public Gender Gender { get; set; }
 
         public ICollection<Order> Orders { get; set; } = new HashSet<Order>();
+        public ICollection<UserCartProduct> CartProducts { get; set; } = new HashSet<UserCartProduct>();
     }
 
     public enum Gender
