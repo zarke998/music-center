@@ -15,6 +15,8 @@ namespace MusicCenter.EfDataAccess.Configurations
         {
             builder.Property(x => x.Name).IsRequired();
             builder.HasIndex(x => x.Name).IsUnique();
+
+            builder.HasOne(x => x.Parent).WithMany(parent => parent.Children).HasForeignKey(x => x.ParentId);
         }
     }
 }
