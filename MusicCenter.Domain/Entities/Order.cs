@@ -9,10 +9,5 @@ namespace MusicCenter.Domain.Entities
     public class Order : Entity
     {
         public string ShippingAdress { get; set; }
-
-        public int UserId { get; set; }
-        public User User { get; set; }
-
-        public ICollection<OrderProduct> OrderProducts { get; set; } = new HashSet<OrderProduct>();
     }
 }
