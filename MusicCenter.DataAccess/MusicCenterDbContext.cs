@@ -24,10 +24,12 @@ namespace MusicCenter.EfDataAccess
 
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
 
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
