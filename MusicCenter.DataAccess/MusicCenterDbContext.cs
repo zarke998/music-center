@@ -29,6 +29,7 @@ namespace MusicCenter.EfDataAccess
             modelBuilder.ApplyConfiguration(new OrderProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new UserCartProductsConfiguration());
         }
 
         public DbSet<User> Users { get; set; }
@@ -38,5 +39,6 @@ namespace MusicCenter.EfDataAccess
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<UserCartProduct> UserCartProducts { get; set; }
     }
 }
