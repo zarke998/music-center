@@ -11,8 +11,8 @@ namespace MusicCenter.Application
         void Execute();
     }
 
-    public interface ICommand<TParam> : IUseCase
+    public interface ICommand<TRequest> : IUseCase
     {
-        void Execute(TParam param);
+        void Execute(TRequest request);
     }
 }
