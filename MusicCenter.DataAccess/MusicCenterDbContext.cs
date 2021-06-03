@@ -11,7 +11,6 @@ namespace MusicCenter.EfDataAccess
 {
     public class MusicCenterDbContext : DbContext
     {
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -32,6 +31,8 @@ namespace MusicCenter.EfDataAccess
             modelBuilder.ApplyConfiguration(new UserCartProductsConfiguration());
             modelBuilder.ApplyConfiguration(new UseCaseLogConfiguration());
             modelBuilder.ApplyConfiguration(new UserUseCaseConfiguration());
+
+            DbSeeder.Seed(modelBuilder);
         }
 
         public DbSet<User> Users { get; set; }
