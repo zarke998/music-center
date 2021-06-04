@@ -8,7 +8,7 @@ namespace MusicCenter.Application
 {
     public interface IUseCase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int Id { get; }
+        public string Name { get; }
     }
 }
