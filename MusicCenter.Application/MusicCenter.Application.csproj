@@ -6,15 +6,16 @@
 
   <ItemGroup>
     <Compile Remove="Commands\**" />
-    <Compile Remove="Queries\**" />
     <EmbeddedResource Remove="Commands\**" />
-    <EmbeddedResource Remove="Queries\**" />
     <None Remove="Commands\**" />
-    <None Remove="Queries\**" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MusicCenter.Domain\MusicCenter.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Queries\" />
   </ItemGroup>
 
 </Project>
