@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "MusicCenter.API": {
+    "MusicCenter.API - Dev": {
       "commandName": "Project",      
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
