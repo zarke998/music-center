@@ -8,7 +8,7 @@ namespace MusicCenter.Application.Searches
 {
     public abstract class PagedSearch
     {
-        public int? Page { get; set; } = 1;
-        public int? PerPage { get; set; } = 8;
+        public int Page { get; set; } = 1;
+        public int PerPage { get; set; } = 8;
     }
 }
