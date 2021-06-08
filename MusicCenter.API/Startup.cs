@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using MusicCenter.Implementation.Queries;
+using MusicCenter.Application.Queries;
 
 namespace MusicCenter.API
 {
@@ -31,8 +32,10 @@ namespace MusicCenter.API
 
             Configuration.Bind(appSettings);
             services.AddAutoMapper(typeof(EfGetProductsQuery).Assembly);
+            services.AddTransient<IGetProductsQuery, EfGetProductsQuery>();
             services.AddTransient<MusicCenterDbContext>();
             services.AddJwt(appSettings);
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,10 +53,7 @@ namespace MusicCenter.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }

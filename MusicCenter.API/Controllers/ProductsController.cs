@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MusicCenter.Application.Queries;
+using MusicCenter.Application.Searches;
+using MusicCenter.EfDataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +12,23 @@ using System.Threading.Tasks;
 
 namespace MusicCenter.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        private readonly MusicCenterDbContext _context;
+
+        public ProductsController(MusicCenterDbContext context)
+        {
+            this._context = context;
+        }
+
         // GET: api/<ProductsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] ProductSearch search, [FromServices] IGetProductsQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(query.Execute(search));
         }
 
         // GET api/<ProductsController>/5
