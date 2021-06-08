@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries;
 using MusicCenter.Application.Searches;
+using MusicCenter.Domain.Entities;
 using MusicCenter.EfDataAccess;
 using System;
 using System.Collections.Generic;
@@ -14,10 +16,12 @@ namespace MusicCenter.Implementation.Queries
     public class EfGetProductsQuery : IGetProductsQuery
     {
         private readonly MusicCenterDbContext _context;
+        private readonly IMapper _mapper;
 
-        public EfGetProductsQuery(MusicCenterDbContext context)
+        public EfGetProductsQuery(MusicCenterDbContext context, IMapper mapper)
         {
             _context = context;
+            this._mapper = mapper;
         }
 
         public int Id => 1;
@@ -51,19 +55,9 @@ namespace MusicCenter.Implementation.Queries
             var totalCount = products.Count();
             var skipCount = (search.Page - 1) * search.PerPage;
 
-            var productDtos = products.Skip(skipCount).Take(search.PerPage).ToList()
-                .Select(p => new ProductDto()
-                {
-                    Name = p.Name,
-                    Brand = new BrandDto()
-                    {
-                        Name = p.Brand.Name
-                    },
-                    Categories = p.ProductCategories.Select(pc => new CategoryDto()
-                    {
-                        Name = pc.Category.Name
-                    })
-                });
+            var productsResult = products.Skip(skipCount).Take(search.PerPage).ToList();
+
+            var productDtos = _mapper.Map<IEnumerable<ProductDto>>(productsResult);
 
             return new PagedResponse<ProductDto>()
             {

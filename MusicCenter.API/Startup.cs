@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using MusicCenter.Implementation.Queries;
 
 namespace MusicCenter.API
 {
@@ -28,6 +30,7 @@ namespace MusicCenter.API
             var appSettings = new AppSettings();
 
             Configuration.Bind(appSettings);
+            services.AddAutoMapper(typeof(EfGetProductsQuery).Assembly);
             services.AddTransient<MusicCenterDbContext>();
             services.AddJwt(appSettings);
         }

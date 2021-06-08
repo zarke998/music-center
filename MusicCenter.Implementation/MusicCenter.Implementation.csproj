@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MusicCenter.Application\MusicCenter.Application.csproj" />
     <ProjectReference Include="..\MusicCenter.DataAccess\MusicCenter.EfDataAccess.csproj" />
   </ItemGroup>
