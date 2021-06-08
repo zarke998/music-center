@@ -48,21 +48,28 @@ namespace MusicCenter.Implementation.Queries
                 products = products.Where(p => p.Price <= search.MaxPrice);
             }
 
-            var productDtos = products.ToList().Select(p => new ProductDto()
-            {
-                Name = p.Name,
-                Brand = new BrandDto()
-                { 
-                    Name = p.Brand.Name 
-                },
-                Categories = p.ProductCategories.Select(pc => new CategoryDto()
+            var totalCount = products.Count();
+            var skipCount = (search.Page - 1) * search.PerPage;
+
+            var productDtos = products.Skip(skipCount).Take(search.PerPage).ToList()
+                .Select(p => new ProductDto()
                 {
-                    Name = pc.Category.Name
-                })
-            });
+                    Name = p.Name,
+                    Brand = new BrandDto()
+                    {
+                        Name = p.Brand.Name
+                    },
+                    Categories = p.ProductCategories.Select(pc => new CategoryDto()
+                    {
+                        Name = pc.Category.Name
+                    })
+                });
 
             return new PagedResponse<ProductDto>()
             {
+                TotalCount = totalCount,
+                CurrentPage = search.Page,
+                ItemsPerPage = search.PerPage,
                 Items = productDtos
             };
         }
