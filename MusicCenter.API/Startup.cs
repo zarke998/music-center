@@ -34,6 +34,7 @@ namespace MusicCenter.API
             services.AddAutoMapper(typeof(EfGetProductsQuery).Assembly);
             services.AddTransient<IGetProductsQuery, EfGetProductsQuery>();
             services.AddTransient<MusicCenterDbContext>();
+            services.AddTransient<DbSeeder>();
             services.AddJwt(appSettings);
             services.AddHttpContextAccessor();
             services.AddApplicationActor();
