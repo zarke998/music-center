@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using MusicCenter.Application;
 using MusicCenter.EfDataAccess;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,25 @@ namespace MusicCenter.API.Core
 {
     public static class ContainerExtensions
     {
+        public static void AddApplicationActor(this IServiceCollection services)
+        {
+            services.AddTransient<IApplicationActor>(provider =>
+            {
+                var httpAccessor = provider.GetService<IHttpContextAccessor>();
+
+                var user = httpAccessor.HttpContext.User;
+
+                if (user.FindFirst("ActorData") == null)
+                {
+                    return new AnonymousActor();
+                }
+
+                var actorString = user.FindFirst("ActorData").Value;
+
+                return JsonConvert.DeserializeObject<JwtActor>(actorString);
+            });
+        }
+
         public static void AddJwt(this IServiceCollection services, AppSettings appSettings)
         {
             services.AddTransient<JwtManager>(provider =>

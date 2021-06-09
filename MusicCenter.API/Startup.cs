@@ -35,6 +35,8 @@ namespace MusicCenter.API
             services.AddTransient<IGetProductsQuery, EfGetProductsQuery>();
             services.AddTransient<MusicCenterDbContext>();
             services.AddJwt(appSettings);
+            services.AddHttpContextAccessor();
+            services.AddApplicationActor();
             services.AddControllers();
         }
 
