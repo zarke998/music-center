@@ -31,8 +31,6 @@ namespace MusicCenter.EfDataAccess
             modelBuilder.ApplyConfiguration(new UserCartProductsConfiguration());
             modelBuilder.ApplyConfiguration(new UseCaseLogConfiguration());
             modelBuilder.ApplyConfiguration(new UserUseCaseConfiguration());
-
-            DbSeeder.Seed(modelBuilder);
         }
 
         public DbSet<User> Users { get; set; }

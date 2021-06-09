@@ -15,7 +15,7 @@ namespace MusicCenter.Domain.Comparers
             if (x == null || y == null)
                 return false;
 
-            return x.Id == y.Id || x.Name == y.Name;
+            return x.Name == y.Name;
         }
 
         public int GetHashCode([DisallowNull] Product obj)
