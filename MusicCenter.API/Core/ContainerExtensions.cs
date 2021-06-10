@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MusicCenter.Application;
+using MusicCenter.Application.Queries;
 using MusicCenter.EfDataAccess;
+using MusicCenter.Implementation.Queries;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,11 @@ namespace MusicCenter.API.Core
 {
     public static class ContainerExtensions
     {
+        public static void AddUseCases(this IServiceCollection services)
+        {
+            services.AddTransient<IGetProductsQuery, EfGetProductsQuery>();
+        }
+
         public static void AddApplicationActor(this IServiceCollection services)
         {
             services.AddTransient<IApplicationActor>(provider =>

@@ -32,12 +32,14 @@ namespace MusicCenter.API
 
             Configuration.Bind(appSettings);
             services.AddAutoMapper(typeof(EfGetProductsQuery).Assembly);
-            services.AddTransient<IGetProductsQuery, EfGetProductsQuery>();
             services.AddTransient<MusicCenterDbContext>();
             services.AddTransient<DbSeeder>();
+            services.AddUseCases();
             services.AddJwt(appSettings);
+
             services.AddHttpContextAccessor();
             services.AddApplicationActor();
+
             services.AddControllers();
         }
 
