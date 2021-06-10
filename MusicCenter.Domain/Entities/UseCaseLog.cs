@@ -15,6 +15,7 @@ namespace MusicCenter.Domain.Entities
 
         public int UseCaseId { get; set; }
         public string UseCaseName { get; set; }
+        public string Data { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }
