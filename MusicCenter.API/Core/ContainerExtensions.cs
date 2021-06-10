@@ -20,6 +20,7 @@ namespace MusicCenter.API.Core
         public static void AddUseCases(this IServiceCollection services)
         {
             services.AddTransient<IGetProductsQuery, EfGetProductsQuery>();
+            services.AddTransient<IGetSingleProductQuery, EfGetSingleProductQuery>();
         }
 
         public static void AddApplicationActor(this IServiceCollection services)
