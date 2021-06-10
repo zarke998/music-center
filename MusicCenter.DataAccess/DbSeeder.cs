@@ -33,6 +33,7 @@ namespace MusicCenter.EfDataAccess
             var userCartProducts = SeedUserCartProducts(products, users);
             var orders = SeedOrders(users);
             var orderProducts = SeedOrderProducts(products, orders);
+            var userUseCases = SeedUserUseCases(users);
 
             return true;
         }
@@ -172,6 +173,28 @@ namespace MusicCenter.EfDataAccess
 
             return orderProducts;
         }
+        private IEnumerable<UserUseCase> SeedUserUseCases(IEnumerable<User> users)
+        {
+            var useCaseIds = Enumerable.Range(1, 100);
+            var userUseCases = new List<UserUseCase>();
+
+            foreach (var useCaseId in useCaseIds)
+                foreach (var user in users)
+                {
+                    userUseCases.Add(new UserUseCase()
+                    {
+                        CreatedAt = DateTime.UtcNow,
+                        IsActive = true,
+                        UserId = user.Id,
+                        UseCaseId = useCaseId
+                    });
+                }
+
+            _context.UserUseCases.AddRange(userUseCases);
+            _context.SaveChanges();
+
+            return userUseCases;
+        }
 
         private IEnumerable<string> GenerateCategoryNames(int count)
         {
@@ -197,8 +220,6 @@ namespace MusicCenter.EfDataAccess
 
             return categories.Take(count);
         }
-
-
     }
 
 }
