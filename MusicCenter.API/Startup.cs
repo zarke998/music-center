@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MusicCenter.Implementation.Queries;
 using MusicCenter.Application.Queries;
+using MusicCenter.Application;
+using MusicCenter.Implementation.Loggers;
 
 namespace MusicCenter.API
 {
@@ -34,6 +36,8 @@ namespace MusicCenter.API
             services.AddAutoMapper(typeof(EfGetProductsQuery).Assembly);
             services.AddTransient<MusicCenterDbContext>();
             services.AddTransient<DbSeeder>();
+            services.AddTransient<IUseCaseLogger, DatabaseUseCaseLogger>();
+            services.AddTransient<UseCaseExecutor>();
             services.AddUseCases();
             services.AddJwt(appSettings);
 

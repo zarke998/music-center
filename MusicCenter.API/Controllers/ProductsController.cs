@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MusicCenter.Application;
 using MusicCenter.Application.Queries;
 using MusicCenter.Application.Searches;
 using MusicCenter.EfDataAccess;
@@ -19,15 +20,20 @@ namespace MusicCenter.API.Controllers
     {
         private readonly MusicCenterDbContext _context;
 
-        public ProductsController(MusicCenterDbContext context)
+        private readonly UseCaseExecutor _executor;
+
+        public ProductsController(MusicCenterDbContext context, UseCaseExecutor executor)
         {
             this._context = context;
+            _executor = executor;            
         }
 
         // GET: api/<ProductsController>
         [HttpGet]
         public IActionResult Get([FromQuery] ProductSearch search, [FromServices] IGetProductsQuery query)
         {
+            _executor.ExecuteQuery(query, search);
+
             return Ok(query.Execute(search));
         }
 
