@@ -41,7 +41,7 @@ namespace MusicCenter.API.Core
             {
                 Id = user.Id,
                 Identity = user.Email,
-                AllowedUseCases = user.UseCases.Select(useCase => useCase.Id).ToList()
+                AllowedUseCases = user.UseCases.Select(useCase => useCase.UseCaseId).ToList()
             };
 
             var claims = new List<Claim>()
