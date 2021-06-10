@@ -57,6 +57,8 @@ namespace MusicCenter.API
 
             app.UseRouting();
 
+            app.UseMiddleware<GlobalExceptionHandler>();
+
             app.UseAuthentication();
             app.UseAuthorization();
 
