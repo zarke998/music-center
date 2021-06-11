@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MusicCenter.Application;
+using MusicCenter.Application.Commands;
 using MusicCenter.Application.Queries;
 using MusicCenter.EfDataAccess;
+using MusicCenter.Implementation.Commands;
 using MusicCenter.Implementation.Queries;
+using MusicCenter.Implementation.Validators;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,6 +24,12 @@ namespace MusicCenter.API.Core
         {
             services.AddTransient<IGetProductsQuery, EfGetProductsQuery>();
             services.AddTransient<IGetSingleProductQuery, EfGetSingleProductQuery>();
+            services.AddTransient<ICreateProductCommand, EfCreateProductCommand>();
+        }
+
+        public static void AddValidators(this IServiceCollection services)
+        {
+            services.AddTransient<CreateProductValidator>();
         }
 
         public static void AddApplicationActor(this IServiceCollection services)

@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
+using MusicCenter.Application.Commands;
 using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries;
 using MusicCenter.Application.Searches;
 using MusicCenter.EfDataAccess;
+using MusicCenter.Implementation.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +29,7 @@ namespace MusicCenter.API.Controllers
         public ProductsController(MusicCenterDbContext context, UseCaseExecutor executor)
         {
             this._context = context;
-            _executor = executor;            
+            _executor = executor;
         }
 
         // GET: api/<ProductsController>
@@ -41,15 +44,34 @@ namespace MusicCenter.API.Controllers
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
         public IActionResult Get([FromServices] IGetSingleProductQuery query, int id)
-        {            
+        {
             return Ok(_executor.ExecuteQuery(query, id));
         }
 
         // POST api/<ProductsController>
         [HttpPost]
-        public void Post([FromBody] CreateProductDto dto)
+        public IActionResult Post([FromBody] CreateProductDto dto,
+                                [FromServices] ICreateProductCommand command,
+                                [FromServices] CreateProductValidator validator)
         {
+            var result = validator.Validate(dto);
 
+            if (!result.IsValid)
+            {
+                return new UnprocessableEntityObjectResult(
+                    new
+                    {
+                        Errors = result.Errors.Select(error =>
+                            new
+                            {
+                                error.PropertyName,
+                                error.ErrorMessage
+                            })
+                    });
+            }
+
+            command.Execute(dto);
+            return StatusCode(StatusCodes.Status201Created);
         }
 
         // PUT api/<ProductsController>/5

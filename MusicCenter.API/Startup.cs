@@ -39,6 +39,7 @@ namespace MusicCenter.API
             services.AddTransient<IUseCaseLogger, DatabaseUseCaseLogger>();
             services.AddTransient<UseCaseExecutor>();
             services.AddUseCases();
+            services.AddValidators();
             services.AddJwt(appSettings);
 
             services.AddHttpContextAccessor();
