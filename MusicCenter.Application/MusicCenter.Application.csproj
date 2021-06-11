@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Commands\**" />
-    <EmbeddedResource Remove="Commands\**" />
-    <None Remove="Commands\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MusicCenter.Domain\MusicCenter.Domain.csproj" />
   </ItemGroup>
 

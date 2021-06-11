@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
+using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries;
 using MusicCenter.Application.Searches;
 using MusicCenter.EfDataAccess;
@@ -46,8 +47,9 @@ namespace MusicCenter.API.Controllers
 
         // POST api/<ProductsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] CreateProductDto dto)
         {
+
         }
 
         // PUT api/<ProductsController>/5

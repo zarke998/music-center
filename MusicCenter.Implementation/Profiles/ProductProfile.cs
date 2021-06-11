@@ -14,7 +14,14 @@ namespace MusicCenter.Implementation.Profiles
         public ProductProfile()
         {
             CreateMap<Product, ProductDto>()
-                .ForMember(dto => dto.Categories, opt => opt.MapFrom(p => p.ProductCategories.Select(pc => pc.Category)));
+                .ForMember(dto => dto.Categories, opt => opt.MapFrom(p => p.ProductCategories.Select(pc => pc.Category)));            
+
+            CreateMap<CreateProductDto, Product>()
+                .ForMember(p => p.ProductCategories, opt =>                            
+                            {
+                                opt.PreCondition(dto => dto.Categories != null);
+                                opt.MapFrom(dto => dto.Categories.Select(catId => new ProductCategory() { CategoryId = catId }));
+                            });
         }
     }
 }
