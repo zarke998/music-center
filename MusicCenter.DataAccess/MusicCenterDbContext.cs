@@ -55,6 +55,11 @@ namespace MusicCenter.EfDataAccess
                     case EntityState.Modified:
                         entity.ModifiedAt = DateTime.UtcNow;
                         break;
+                    case EntityState.Deleted:
+                        entity.IsDeleted = true;
+                        entity.DeletedAt = DateTime.UtcNow;
+                        entry.State = EntityState.Modified;
+                        break;
                 }
             }
 
