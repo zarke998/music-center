@@ -35,6 +35,29 @@ namespace MusicCenter.EfDataAccess
             modelBuilder.ApplyGlobalFilter<Entity>(e => e.IsDeleted == false);
         }
 
+        public override int SaveChanges()
+        {
+            var entries = this.ChangeTracker.Entries();
+
+            foreach(var entry in entries)
+            {
+                var entity = entry.Entity as Entity;
+                if (entity == null)
+                    continue;
+
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entity.IsDeleted = false;
+                        entity.IsActive = true;
+                        entity.CreatedAt = DateTime.UtcNow;
+                        break;
+                }
+            }
+
+            return base.SaveChanges();
+        }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
