@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using MusicCenter.Application.Exceptions;
 using Newtonsoft.Json;
 using System;
@@ -46,6 +47,18 @@ namespace MusicCenter.API.Core
                             message = "Entity not found."
                         };
                         response.StatusCode = StatusCodes.Status404NotFound;
+                        break;
+                    case ValidationException validationException:
+                        result = new
+                        {
+                            message = "Validation error.",
+                            errors = validationException.Errors.Select(error => new
+                            {
+                                error.PropertyName,
+                                error.ErrorMessage
+                            })
+                        };
+                        response.StatusCode = StatusCodes.Status422UnprocessableEntity;
                         break;
                     default:
                         result = new

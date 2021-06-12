@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
@@ -54,21 +55,7 @@ namespace MusicCenter.API.Controllers
                                 [FromServices] ICreateProductCommand command,
                                 [FromServices] CreateProductValidator validator)
         {
-            var result = validator.Validate(dto);
-
-            if (!result.IsValid)
-            {
-                return new UnprocessableEntityObjectResult(
-                    new
-                    {
-                        Errors = result.Errors.Select(error =>
-                            new
-                            {
-                                error.PropertyName,
-                                error.ErrorMessage
-                            })
-                    });
-            }
+            validator.ValidateAndThrow(dto);
 
             command.Execute(dto);
             return StatusCode(StatusCodes.Status201Created);
