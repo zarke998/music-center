@@ -52,6 +52,9 @@ namespace MusicCenter.EfDataAccess
                         entity.IsActive = true;
                         entity.CreatedAt = DateTime.UtcNow;
                         break;
+                    case EntityState.Modified:
+                        entity.ModifiedAt = DateTime.UtcNow;
+                        break;
                 }
             }
 
