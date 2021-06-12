@@ -46,7 +46,7 @@ namespace MusicCenter.Implementation.Validators
                 {
                     RuleForEach(dto => dto.Categories)
                         .Must(categoryId => context.Categories.Any(c => c.Id == categoryId))
-                        .WithMessage("Categories array has an unmatching category in database.");
+                        .WithMessage((dto, id) => $"Category {id} does not exist.");
                 });
         }
     }
