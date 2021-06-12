@@ -34,10 +34,20 @@ namespace MusicCenter.Implementation.Validators
                 .Must(brandId => context.Brands.Any(b => b.Id == brandId))
                 .WithMessage("Brand with specified id does not exist.");
 
-            RuleForEach(dto => dto.Categories)
-                .Must(categoryId => context.Categories.Any(c => c.Id == categoryId))
-                .WithMessage("Categories array has an unmatching category in database.")
-                .When(dto => dto.Categories != null && dto.Categories.Count > 0, ApplyConditionTo.CurrentValidator);
+            RuleFor(dto => dto.Categories)
+                .Must(cats =>
+                {
+                    var distinctCategories = cats.Distinct();
+                    return distinctCategories.Count() == cats.Count;
+                })
+                .WithMessage("Product categories must be unique.")
+                .When(dto => dto.Categories != null && dto.Categories.Count > 0, ApplyConditionTo.CurrentValidator)
+                .DependentRules(() =>
+                {
+                    RuleForEach(dto => dto.Categories)
+                        .Must(categoryId => context.Categories.Any(c => c.Id == categoryId))
+                        .WithMessage("Categories array has an unmatching category in database.");
+                });
         }
     }
 }
