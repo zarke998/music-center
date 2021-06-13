@@ -77,8 +77,18 @@ namespace MusicCenter.API.Controllers
 
         // DELETE api/<ProductsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IDeleteProductCommand command)
         {
+            var productExists = _context.Products.Any(p => p.Id == id);
+
+            if (!productExists)
+            {
+                return NotFound();
+            }
+
+            command.Execute(id);
+
+            return NoContent();
         }
     }
 }

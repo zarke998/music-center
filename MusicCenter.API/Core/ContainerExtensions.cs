@@ -26,6 +26,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<IGetSingleProductQuery, EfGetSingleProductQuery>();
             services.AddTransient<ICreateProductCommand, EfCreateProductCommand>();
             services.AddTransient<IUpdateProductCommand, EfUpdateProductCommand>();
+            services.AddTransient<IDeleteProductCommand, EfDeleteProductCommand>();
         }
 
         public static void AddValidators(this IServiceCollection services)
