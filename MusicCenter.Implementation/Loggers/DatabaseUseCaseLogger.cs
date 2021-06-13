@@ -21,6 +21,9 @@ namespace MusicCenter.Implementation.Loggers
 
         public void Log(IUseCase useCase, IApplicationActor actor, object useCaseData)
         {
+            if (actor.Id == 0)
+                return;
+            
             var useCaseLog = new UseCaseLog()
             {
                 UseCaseId = useCase.Id,
