@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicCenter.Application.Queries
+namespace MusicCenter.Application.Queries.ProductQueries
 {
     public interface IGetProductsQuery : IQuery<ProductSearch, PagedResponse<ProductDto>>
     {

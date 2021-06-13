@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MusicCenter.Application.DTO;
 using MusicCenter.Application.Exceptions;
-using MusicCenter.Application.Queries;
+using MusicCenter.Application.Queries.ProductQueries;
 using MusicCenter.Domain.Entities;
 using MusicCenter.EfDataAccess;
 using System;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicCenter.Implementation.Queries
+namespace MusicCenter.Implementation.Queries.ProductQueries
 {
     public class EfGetSingleProductQuery : IGetSingleProductQuery
     {

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using MusicCenter.Implementation.Queries;
+using MusicCenter.Implementation.Queries.ProductQueries;
 using MusicCenter.Application.Queries;
 using MusicCenter.Application;
 using MusicCenter.Implementation.Loggers;

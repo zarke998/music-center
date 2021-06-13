@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
 using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.DTO;
-using MusicCenter.Application.Queries;
+using MusicCenter.Application.Queries.ProductQueries;
 using MusicCenter.Application.Searches;
 using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Validators;
