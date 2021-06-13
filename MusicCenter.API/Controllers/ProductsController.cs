@@ -37,9 +37,7 @@ namespace MusicCenter.API.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] ProductSearch search, [FromServices] IGetProductsQuery query)
         {
-            _executor.ExecuteQuery(query, search);
-
-            return Ok(query.Execute(search));
+            return Ok(_executor.ExecuteQuery(query, search));
         }
 
         // GET api/<ProductsController>/5
