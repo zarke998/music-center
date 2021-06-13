@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicCenter.Application.Commands
+namespace MusicCenter.Application.Commands.ProductCommands
 {
-    public interface IUpdateProductCommand : ICommand<UpdateProductDto>
+    public interface ICreateProductCommand : ICommand<CreateProductDto>
     {
 
     }

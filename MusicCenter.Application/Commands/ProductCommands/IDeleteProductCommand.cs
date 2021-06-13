@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicCenter.Application.Commands
+namespace MusicCenter.Application.Commands.ProductCommands
 {
     public interface IDeleteProductCommand : ICommand<int>
     {

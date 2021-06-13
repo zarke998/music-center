@@ -1,4 +1,4 @@
-﻿using MusicCenter.Application.Commands;
+﻿using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.EfDataAccess;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicCenter.Implementation.Commands
+namespace MusicCenter.Implementation.Commands.ProductCommands
 {
     public class EfDeleteProductCommand : IDeleteProductCommand
     {
