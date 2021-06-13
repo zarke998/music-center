@@ -6,6 +6,7 @@ using MusicCenter.Application.Queries.ProductQueries;
 using MusicCenter.Application.Searches;
 using MusicCenter.Domain.Entities;
 using MusicCenter.EfDataAccess;
+using MusicCenter.Implementation.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,20 +54,7 @@ namespace MusicCenter.Implementation.Queries.ProductQueries
                 products = products.Where(p => p.Price <= search.MaxPrice);
             }
 
-            var totalCount = products.Count();
-            var skipCount = (search.Page - 1) * search.PerPage;
-
-            var productsResult = products.Skip(skipCount).Take(search.PerPage).ToList();
-
-            var productDtos = _mapper.Map<IEnumerable<ProductDto>>(productsResult);
-
-            return new PagedResponse<ProductDto>()
-            {
-                TotalCount = totalCount,
-                CurrentPage = search.Page,
-                ItemsPerPage = search.PerPage,
-                Items = productDtos
-            };
+            return products.ToPagedResponse<ProductDto, Product>(search, _mapper);
         }
     }
 }
