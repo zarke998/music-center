@@ -4,9 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MusicCenter.Application;
 using MusicCenter.Application.Commands.ProductCommands;
+using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Queries.ProductQueries;
 using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Commands.ProductCommands;
+using MusicCenter.Implementation.Queries.BrandQueries;
 using MusicCenter.Implementation.Queries.ProductQueries;
 using MusicCenter.Implementation.Validators;
 using Newtonsoft.Json;
@@ -22,11 +24,17 @@ namespace MusicCenter.API.Core
     {
         public static void AddUseCases(this IServiceCollection services)
         {
+            #region Product Use Cases
             services.AddTransient<IGetProductsQuery, EfGetProductsQuery>();
             services.AddTransient<IGetSingleProductQuery, EfGetSingleProductQuery>();
             services.AddTransient<ICreateProductCommand, EfCreateProductCommand>();
             services.AddTransient<IUpdateProductCommand, EfUpdateProductCommand>();
             services.AddTransient<IDeleteProductCommand, EfDeleteProductCommand>();
+            #endregion
+
+            #region Brand Use Cases
+            services.AddTransient<IGetBrandsQuery, EfGetBrandsQuery>(); 
+            #endregion
         }
 
         public static void AddValidators(this IServiceCollection services)
