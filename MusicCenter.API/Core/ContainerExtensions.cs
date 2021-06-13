@@ -33,7 +33,8 @@ namespace MusicCenter.API.Core
             #endregion
 
             #region Brand Use Cases
-            services.AddTransient<IGetBrandsQuery, EfGetBrandsQuery>(); 
+            services.AddTransient<IGetBrandsQuery, EfGetBrandsQuery>();
+            services.AddTransient<IGetSingleBrandQuery, EfGetSingleBrandQuery>();
             #endregion
         }
 
