@@ -55,7 +55,8 @@ namespace MusicCenter.API.Controllers
         {
             validator.ValidateAndThrow(dto);
 
-            command.Execute(dto);
+            _executor.ExecuteCommand(command, dto);
+
             return StatusCode(StatusCodes.Status201Created);
         }
 
@@ -68,7 +69,7 @@ namespace MusicCenter.API.Controllers
             dto.Id = id;
             validator.ValidateAndThrow(dto);
 
-            command.Execute(dto);
+            _executor.ExecuteCommand(command, dto);
 
             return NoContent();
         }
@@ -84,7 +85,7 @@ namespace MusicCenter.API.Controllers
                 return NotFound();
             }
 
-            command.Execute(id);
+            _executor.ExecuteCommand(command, id);
 
             return NoContent();
         }
