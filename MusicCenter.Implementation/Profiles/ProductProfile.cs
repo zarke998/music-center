@@ -22,6 +22,9 @@ namespace MusicCenter.Implementation.Profiles
                                 opt.PreCondition(dto => dto.Categories != null);
                                 opt.MapFrom(dto => dto.Categories.Select(catId => new ProductCategory() { CategoryId = catId }));
                             });
+
+            CreateMap<UpdateProductDto, Product>()
+                .ForAllMembers(opt => opt.PreCondition((dto, prod, srcMemb) => srcMemb != null));
         }
     }
 }
