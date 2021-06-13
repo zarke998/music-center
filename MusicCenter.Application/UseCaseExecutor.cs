@@ -22,7 +22,7 @@ namespace MusicCenter.Application
         {
             _logger.Log(command, _actor, request);
 
-            if (_actor.AllowedUseCases.Contains(command.Id))
+            if (!_actor.AllowedUseCases.Contains(command.Id))
             {
                 throw new UnauthorizedUseCaseException(command, _actor);
             }
