@@ -60,8 +60,17 @@ namespace MusicCenter.API.Controllers
 
         // PUT api/<BrandsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, 
+                                [FromBody] UpdateBrandDto dto,
+                                [FromServices] IUpdateBrandCommand command,
+                                [FromServices] UpdateBrandValidator validator)
         {
+            dto.Id = id;
+            validator.ValidateAndThrow(dto);
+
+            _executor.ExecuteCommand(command, dto);
+
+            return NoContent();
         }
 
         // DELETE api/<BrandsController>/5

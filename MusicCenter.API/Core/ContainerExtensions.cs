@@ -38,6 +38,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<IGetBrandsQuery, EfGetBrandsQuery>();
             services.AddTransient<IGetSingleBrandQuery, EfGetSingleBrandQuery>();
             services.AddTransient<ICreateBrandCommand, EfCreateBrandCommand>();
+            services.AddTransient<IUpdateBrandCommand, EfUpdateBrandCommand>();
             #endregion
         }
 
@@ -47,6 +48,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<UpdateProductValidator>();
 
             services.AddTransient<CreateBrandValidator>();
+            services.AddTransient<UpdateBrandValidator>();
         }
 
         public static void AddApplicationActor(this IServiceCollection services)
