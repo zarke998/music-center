@@ -50,6 +50,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<IGetCategoriesQuery, EfGetCategoriesQuery>();
             services.AddTransient<IGetSingleCategoryQuery, EfGetSingleCategoryQuery>();
             services.AddTransient<ICreateCategoryCommand, EfCreateCategoryCommand>();
+            services.AddTransient<IDeleteCategoryCommand, EfDeleteCategoryCommand>();
             #endregion
         }
 

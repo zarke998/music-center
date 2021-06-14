@@ -5,6 +5,7 @@ using MusicCenter.Application.Commands.CategoryCommands;
 using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries.CategoryQueries;
 using MusicCenter.Application.Searches;
+using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Validators;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,12 @@ namespace MusicCenter.API.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly UseCaseExecutor _executor;
+        private readonly MusicCenterDbContext _context;
 
-        public CategoriesController(UseCaseExecutor executor)
+        public CategoriesController(UseCaseExecutor executor, MusicCenterDbContext context)
         {
             this._executor = executor;
+            this._context = context;
         }
         // GET: api/<CategoryController>
         [HttpGet]
@@ -61,8 +64,16 @@ namespace MusicCenter.API.Controllers
 
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IDeleteCategoryCommand command)
         {
+            if (!_context.Categories.Any(c => c.Id == id))
+            {
+                return NotFound();
+            }
+
+            _executor.ExecuteCommand(command, id);
+
+            return NoContent();
         }
     }
 }
