@@ -64,7 +64,7 @@ namespace MusicCenter.API.Core
                 audience: "Any",
                 claims: claims,
                 notBefore: now,
-                expires: now.AddMinutes(30),
+                expires: now.AddHours(2),
                 signingCredentials: credentials
             );
 
