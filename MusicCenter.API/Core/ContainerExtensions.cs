@@ -58,6 +58,7 @@ namespace MusicCenter.API.Core
 
             #region User Use Cases
             services.AddTransient<IGetUsersQuery, EfGetUsersQuery>();
+            services.AddTransient<IGetSingleUserQuery, EfGetSingleUserQuery>();
             #endregion
         }
 

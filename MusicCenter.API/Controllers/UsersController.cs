@@ -34,9 +34,9 @@ namespace MusicCenter.API.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get([FromServices] IGetSingleUserQuery query, int id)
         {
-            return "value";
+            return Ok(_executor.ExecuteQuery(query, id));
         }
 
         // POST api/<UserController>
