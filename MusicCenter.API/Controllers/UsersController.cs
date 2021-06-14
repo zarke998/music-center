@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
+using MusicCenter.Application.Commands.UserCommands;
+using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries.UserQueries;
 using MusicCenter.Application.Searches;
 using MusicCenter.EfDataAccess;
+using MusicCenter.Implementation.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,8 +46,15 @@ namespace MusicCenter.API.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] CreateUserDto dto,
+                                [FromServices] ICreateUserCommand command,
+                                [FromServices] CreateUserValidator validator)
         {
+            validator.ValidateAndThrow(dto);
+
+            _executor.ExecuteCommand(command, dto);
+
+            return StatusCode(StatusCodes.Status201Created);
         }
 
         // PUT api/<UserController>/5

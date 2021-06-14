@@ -6,6 +6,7 @@ using MusicCenter.Application;
 using MusicCenter.Application.Commands.BrandCommands;
 using MusicCenter.Application.Commands.CategoryCommands;
 using MusicCenter.Application.Commands.ProductCommands;
+using MusicCenter.Application.Commands.UserCommands;
 using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Queries.CategoryQueries;
 using MusicCenter.Application.Queries.ProductQueries;
@@ -14,6 +15,7 @@ using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Commands.BrandCommands;
 using MusicCenter.Implementation.Commands.CategoryCommands;
 using MusicCenter.Implementation.Commands.ProductCommands;
+using MusicCenter.Implementation.Commands.UserCommands;
 using MusicCenter.Implementation.Queries.BrandQueries;
 using MusicCenter.Implementation.Queries.CategoryQueries;
 using MusicCenter.Implementation.Queries.ProductQueries;
@@ -59,6 +61,7 @@ namespace MusicCenter.API.Core
             #region User Use Cases
             services.AddTransient<IGetUsersQuery, EfGetUsersQuery>();
             services.AddTransient<IGetSingleUserQuery, EfGetSingleUserQuery>();
+            services.AddTransient<ICreateUserCommand, EfCreateUserCommand>();
             #endregion
         }
 
@@ -72,6 +75,8 @@ namespace MusicCenter.API.Core
 
             services.AddTransient<CreateCategoryValidator>();
             services.AddTransient<UpdateCategoryValidator>();
+
+            services.AddTransient<CreateUserValidator>();
         }
 
         public static void AddApplicationActor(this IServiceCollection services)

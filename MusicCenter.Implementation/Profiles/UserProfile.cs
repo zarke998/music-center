@@ -14,6 +14,7 @@ namespace MusicCenter.Implementation.Profiles
         public UserProfile()
         {
             CreateMap<User, UserDto>();
+            CreateMap<CreateUserDto, User>();
         }
     }
 }
