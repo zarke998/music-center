@@ -74,8 +74,11 @@ namespace MusicCenter.API.Controllers
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IDeleteUserCommand command)
         {
+            _executor.ExecuteCommand(command, id);
+
+            return NoContent();
         }
     }
 }

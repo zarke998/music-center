@@ -63,6 +63,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<IGetSingleUserQuery, EfGetSingleUserQuery>();
             services.AddTransient<ICreateUserCommand, EfCreateUserCommand>();
             services.AddTransient<IUpdateUserCommand, EfUpdateUserCommand>();
+            services.AddTransient<IDeleteUserCommand, EfDeleteUserCommand>();
             #endregion
         }
 
