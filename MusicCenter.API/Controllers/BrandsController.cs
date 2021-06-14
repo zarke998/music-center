@@ -7,6 +7,7 @@ using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries;
 using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Searches;
+using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Validators;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,13 @@ namespace MusicCenter.API.Controllers
     {
         private readonly UseCaseExecutor _executor;
         private readonly IApplicationActor _actor;
+        private readonly MusicCenterDbContext _context;
 
-        public BrandsController(UseCaseExecutor executor, IApplicationActor actor)
+        public BrandsController(UseCaseExecutor executor, IApplicationActor actor, MusicCenterDbContext context)
         {
             _executor = executor;
             _actor = actor;
+            _context = context;
         }
 
         // GET: api/<BrandsController>
@@ -75,8 +78,16 @@ namespace MusicCenter.API.Controllers
 
         // DELETE api/<BrandsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IDeleteBrandCommand command)
         {
+            if(!_context.Brands.Any(b => b.Id == id))
+            {
+                return NotFound();
+            }
+
+            _executor.ExecuteCommand(command, id);
+
+            return NoContent();
         }
     }
 }

@@ -39,6 +39,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<IGetSingleBrandQuery, EfGetSingleBrandQuery>();
             services.AddTransient<ICreateBrandCommand, EfCreateBrandCommand>();
             services.AddTransient<IUpdateBrandCommand, EfUpdateBrandCommand>();
+            services.AddTransient<IDeleteBrandCommand, EfDeleteBrandCommand>();
             #endregion
         }
 
