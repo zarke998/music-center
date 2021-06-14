@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MusicCenter.Application;
+using MusicCenter.Application.Commands.BrandCommands;
 using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Queries.ProductQueries;
 using MusicCenter.EfDataAccess;
+using MusicCenter.Implementation.Commands.BrandCommands;
 using MusicCenter.Implementation.Commands.ProductCommands;
 using MusicCenter.Implementation.Queries.BrandQueries;
 using MusicCenter.Implementation.Queries.ProductQueries;
@@ -35,6 +37,7 @@ namespace MusicCenter.API.Core
             #region Brand Use Cases
             services.AddTransient<IGetBrandsQuery, EfGetBrandsQuery>();
             services.AddTransient<IGetSingleBrandQuery, EfGetSingleBrandQuery>();
+            services.AddTransient<ICreateBrandCommand, EfCreateBrandCommand>();
             #endregion
         }
 
@@ -42,6 +45,8 @@ namespace MusicCenter.API.Core
         {
             services.AddTransient<CreateProductValidator>();
             services.AddTransient<UpdateProductValidator>();
+
+            services.AddTransient<CreateBrandValidator>();
         }
 
         public static void AddApplicationActor(this IServiceCollection services)

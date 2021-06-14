@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
+using MusicCenter.Application.Commands.BrandCommands;
 using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries;
 using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Searches;
+using MusicCenter.Implementation.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,8 +47,15 @@ namespace MusicCenter.API.Controllers
 
         // POST api/<BrandsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] CreateBrandDto dto,
+                                    [FromServices] ICreateBrandCommand command,
+                                    [FromServices] CreateBrandValidator validator)
         {
+            validator.ValidateAndThrow(dto);
+
+            _executor.ExecuteCommand(command, dto);
+
+            return NoContent();
         }
 
         // PUT api/<BrandsController>/5
