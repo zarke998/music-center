@@ -51,6 +51,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<IGetSingleCategoryQuery, EfGetSingleCategoryQuery>();
             services.AddTransient<ICreateCategoryCommand, EfCreateCategoryCommand>();
             services.AddTransient<IDeleteCategoryCommand, EfDeleteCategoryCommand>();
+            services.AddTransient<IUpdateCategoryCommand, EfUpdateCategoryCommand>();
             #endregion
         }
 
@@ -63,6 +64,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<UpdateBrandValidator>();
 
             services.AddTransient<CreateCategoryValidator>();
+            services.AddTransient<UpdateCategoryValidator>();
         }
 
         public static void AddApplicationActor(this IServiceCollection services)

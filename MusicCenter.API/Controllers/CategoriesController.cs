@@ -58,8 +58,17 @@ namespace MusicCenter.API.Controllers
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id,
+                                [FromBody] CategoryDto dto,
+                                [FromServices] IUpdateCategoryCommand command,
+                                [FromServices] UpdateCategoryValidator validator)
         {
+            dto.Id = id;
+            validator.ValidateAndThrow(dto);
+
+            _executor.ExecuteCommand(command, dto);
+
+            return NoContent();
         }
 
         // DELETE api/<CategoryController>/5
