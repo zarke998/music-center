@@ -62,6 +62,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<IGetUsersQuery, EfGetUsersQuery>();
             services.AddTransient<IGetSingleUserQuery, EfGetSingleUserQuery>();
             services.AddTransient<ICreateUserCommand, EfCreateUserCommand>();
+            services.AddTransient<IUpdateUserCommand, EfUpdateUserCommand>();
             #endregion
         }
 
@@ -77,6 +78,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<UpdateCategoryValidator>();
 
             services.AddTransient<CreateUserValidator>();
+            services.AddTransient<UpdateUserValidator>();
         }
 
         public static void AddApplicationActor(this IServiceCollection services)

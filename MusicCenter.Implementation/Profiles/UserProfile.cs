@@ -15,6 +15,9 @@ namespace MusicCenter.Implementation.Profiles
         {
             CreateMap<User, UserDto>();
             CreateMap<CreateUserDto, User>();
+
+            CreateMap<UpdateUserDto, User>()
+               .ForAllMembers(opt => opt.Condition((dto, user, srcMemb) => srcMemb != null));
         }
     }
 }
