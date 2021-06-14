@@ -9,6 +9,7 @@ using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Queries.CategoryQueries;
 using MusicCenter.Application.Queries.ProductQueries;
+using MusicCenter.Application.Queries.UserQueries;
 using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Commands.BrandCommands;
 using MusicCenter.Implementation.Commands.CategoryCommands;
@@ -16,6 +17,7 @@ using MusicCenter.Implementation.Commands.ProductCommands;
 using MusicCenter.Implementation.Queries.BrandQueries;
 using MusicCenter.Implementation.Queries.CategoryQueries;
 using MusicCenter.Implementation.Queries.ProductQueries;
+using MusicCenter.Implementation.Queries.UserQueries;
 using MusicCenter.Implementation.Validators;
 using Newtonsoft.Json;
 using System;
@@ -52,6 +54,10 @@ namespace MusicCenter.API.Core
             services.AddTransient<ICreateCategoryCommand, EfCreateCategoryCommand>();
             services.AddTransient<IDeleteCategoryCommand, EfDeleteCategoryCommand>();
             services.AddTransient<IUpdateCategoryCommand, EfUpdateCategoryCommand>();
+            #endregion
+
+            #region User Use Cases
+            services.AddTransient<IGetUsersQuery, EfGetUsersQuery>();
             #endregion
         }
 

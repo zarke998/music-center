@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
+using MusicCenter.Application.Queries.UserQueries;
+using MusicCenter.Application.Searches;
 using MusicCenter.EfDataAccess;
 using System;
 using System.Collections.Generic;
@@ -25,9 +27,9 @@ namespace MusicCenter.API.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] UserSearch search, [FromServices] IGetUsersQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_executor.ExecuteQuery(query, search));
         }
 
         // GET api/<UserController>/5
