@@ -46,6 +46,7 @@ namespace MusicCenter.API.Core
 
             #region Category Use Cases
             services.AddTransient<IGetCategoriesQuery, EfGetCategoriesQuery>();
+            services.AddTransient<IGetSingleCategoryQuery, EfGetSingleCategoryQuery>();
             #endregion
         }
 
