@@ -15,6 +15,7 @@ namespace MusicCenter.Implementation.Profiles
         {
             CreateMap<Brand, BrandDto>();
             CreateMap<CreateBrandDto, Brand>();
+            CreateMap<UpdateBrandDto, Brand>();
         }
     }
 }
