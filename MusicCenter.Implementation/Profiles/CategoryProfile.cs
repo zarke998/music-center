@@ -14,6 +14,7 @@ namespace MusicCenter.Implementation.Profiles
         public CategoryProfile()
         {
             CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDto, Category>();
         }
     }
 }
