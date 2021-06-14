@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
+using MusicCenter.Application.Commands.CategoryCommands;
+using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries.CategoryQueries;
 using MusicCenter.Application.Searches;
+using MusicCenter.Implementation.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,10 +40,17 @@ namespace MusicCenter.API.Controllers
             return Ok(_executor.ExecuteQuery(query, id));
         }
 
-        // POST api/<CategoryController>
+        // POST api/<CategoriesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] CategoryDto dto,
+                                    [FromServices] ICreateCategoryCommand command,
+                                    [FromServices] CreateCategoryValidator validator)
         {
+            validator.ValidateAndThrow(dto);
+
+            _executor.ExecuteCommand(command, dto);
+
+            return NoContent();
         }
 
         // PUT api/<CategoryController>/5

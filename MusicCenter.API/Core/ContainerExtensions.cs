@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MusicCenter.Application;
 using MusicCenter.Application.Commands.BrandCommands;
+using MusicCenter.Application.Commands.CategoryCommands;
 using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Queries.CategoryQueries;
@@ -47,6 +48,7 @@ namespace MusicCenter.API.Core
             #region Category Use Cases
             services.AddTransient<IGetCategoriesQuery, EfGetCategoriesQuery>();
             services.AddTransient<IGetSingleCategoryQuery, EfGetSingleCategoryQuery>();
+            services.AddTransient<ICreateCategoryCommand, EfCreateCategoryCommand>();
             #endregion
         }
 
@@ -57,6 +59,8 @@ namespace MusicCenter.API.Core
 
             services.AddTransient<CreateBrandValidator>();
             services.AddTransient<UpdateBrandValidator>();
+
+            services.AddTransient<CreateCategoryValidator>();
         }
 
         public static void AddApplicationActor(this IServiceCollection services)
