@@ -11,6 +11,7 @@ using MusicCenter.Application.Queries.CategoryQueries;
 using MusicCenter.Application.Queries.ProductQueries;
 using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Commands.BrandCommands;
+using MusicCenter.Implementation.Commands.CategoryCommands;
 using MusicCenter.Implementation.Commands.ProductCommands;
 using MusicCenter.Implementation.Queries.BrandQueries;
 using MusicCenter.Implementation.Queries.CategoryQueries;

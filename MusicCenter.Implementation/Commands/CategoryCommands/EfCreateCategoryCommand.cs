@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicCenter.Implementation.Commands.BrandCommands
+namespace MusicCenter.Implementation.Commands.CategoryCommands
 {
     public class EfCreateCategoryCommand : ICreateCategoryCommand
     {
