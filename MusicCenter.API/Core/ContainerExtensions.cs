@@ -7,6 +7,7 @@ using MusicCenter.Application.Commands.BrandCommands;
 using MusicCenter.Application.Commands.CategoryCommands;
 using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.Commands.UserCommands;
+using MusicCenter.Application.Commands.UserUseCaseCommands;
 using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Queries.CategoryQueries;
 using MusicCenter.Application.Queries.ProductQueries;
@@ -16,6 +17,7 @@ using MusicCenter.Implementation.Commands.BrandCommands;
 using MusicCenter.Implementation.Commands.CategoryCommands;
 using MusicCenter.Implementation.Commands.ProductCommands;
 using MusicCenter.Implementation.Commands.UserCommands;
+using MusicCenter.Implementation.Commands.UserUseCaseCommands;
 using MusicCenter.Implementation.Queries.BrandQueries;
 using MusicCenter.Implementation.Queries.CategoryQueries;
 using MusicCenter.Implementation.Queries.ProductQueries;
@@ -65,6 +67,10 @@ namespace MusicCenter.API.Core
             services.AddTransient<IUpdateUserCommand, EfUpdateUserCommand>();
             services.AddTransient<IDeleteUserCommand, EfDeleteUserCommand>();
             #endregion
+
+            #region UserUseCase use cases
+            services.AddTransient<ICreateUserUseCaseCommand, EfCreateUserUseCaseCommand>();
+            #endregion
         }
 
         public static void AddValidators(this IServiceCollection services)
@@ -80,6 +86,8 @@ namespace MusicCenter.API.Core
 
             services.AddTransient<CreateUserValidator>();
             services.AddTransient<UpdateUserValidator>();
+
+            services.AddTransient<CreateUserUseCaseValidator>();
         }
 
         public static void AddApplicationActor(this IServiceCollection services)
