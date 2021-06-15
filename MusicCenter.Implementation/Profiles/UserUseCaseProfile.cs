@@ -13,6 +13,7 @@ namespace MusicCenter.Implementation.Profiles
     {
         public UserUseCaseProfile()
         {
+            CreateMap<UserUseCase, UserUseCaseDto>();
             CreateMap<CreateUserUseCaseDto, UserUseCase>();
         }
     }

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
 using MusicCenter.Application.Commands.UserUseCaseCommands;
 using MusicCenter.Application.DTO;
+using MusicCenter.Application.Queries.UserUseCasesQueries;
+using MusicCenter.Application.Searches;
 using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Validators;
 using System;
@@ -27,6 +29,13 @@ namespace MusicCenter.API.Controllers
             _executor = executor;
             _context = context;
         }
+
+        [HttpGet]
+        public IActionResult Get([FromQuery] UserUseCaseSearch search, [FromServices] IGetUserUseCasesQuery query)
+        {
+            return Ok(_executor.ExecuteQuery(query, search));
+        }
+
         // POST api/<UserUseCasesController>
         [HttpPost]
         public IActionResult Post([FromBody] CreateUserUseCaseDto dto,
