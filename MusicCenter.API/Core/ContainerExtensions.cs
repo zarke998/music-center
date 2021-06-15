@@ -13,6 +13,7 @@ using MusicCenter.Application.Commands.UserUseCaseCommands;
 using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Queries.CategoryQueries;
 using MusicCenter.Application.Queries.ProductQueries;
+using MusicCenter.Application.Queries.UseCaseLogQueries;
 using MusicCenter.Application.Queries.UserQueries;
 using MusicCenter.Application.Queries.UserUseCaseQueries;
 using MusicCenter.Application.Queries.UserUseCasesQueries;
@@ -26,6 +27,7 @@ using MusicCenter.Implementation.Commands.UserUseCaseCommands;
 using MusicCenter.Implementation.Queries.BrandQueries;
 using MusicCenter.Implementation.Queries.CategoryQueries;
 using MusicCenter.Implementation.Queries.ProductQueries;
+using MusicCenter.Implementation.Queries.UseCaseLogQueries;
 using MusicCenter.Implementation.Queries.UserQueries;
 using MusicCenter.Implementation.Queries.UserUseCaseQueries;
 using MusicCenter.Implementation.Validators;
@@ -82,6 +84,10 @@ namespace MusicCenter.API.Core
             services.AddTransient<IDeleteUserCartProductCommand, EfDeleteUserCartProductCommand>();
             services.AddTransient<IGetUserUseCasesQuery, EfGetUserUseCasesQuery>();
             services.AddTransient<IGetSingleUserUseCaseQuery, EfGetSingleUserUseCaseQuery>();
+            #endregion
+
+            #region UseCaseLog use cases
+            services.AddTransient<IGetUseCaseLogsQuery, EfGetUseCaseLogsQuery>();
             #endregion
         }
         public static void AddValidators(this IServiceCollection services)
