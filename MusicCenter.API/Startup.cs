@@ -41,6 +41,7 @@ namespace MusicCenter.API
             services.AddUseCases();
             services.AddValidators();
             services.AddJwt(appSettings);
+            services.AddSwagger();
 
             services.AddHttpContextAccessor();
             services.AddApplicationActor();
@@ -56,8 +57,14 @@ namespace MusicCenter.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseSwagger();
 
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger");
+            });
+
+            app.UseRouting();
             app.UseMiddleware<GlobalExceptionHandler>();
 
             app.UseAuthentication();
