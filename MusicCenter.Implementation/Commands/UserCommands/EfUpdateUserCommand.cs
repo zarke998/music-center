@@ -19,7 +19,7 @@ namespace MusicCenter.Implementation.Commands.UserCommands
         private readonly IMapper _mapper;
 
         public int Id => 18;
-        public string Name => "Ef Update User";
+        public string Name => "Ef Update User ";
 
         public EfUpdateUserCommand(MusicCenterDbContext context, IMapper mapper)
         {

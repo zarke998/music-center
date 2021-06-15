@@ -70,6 +70,7 @@ namespace MusicCenter.API.Core
 
             #region UserUseCase use cases
             services.AddTransient<ICreateUserUseCaseCommand, EfCreateUserUseCaseCommand>();
+            services.AddTransient<IDeleteUserUseCaseCommand, EfDeleteUserUseCaseCommand>();
             #endregion
         }
 
