@@ -77,6 +77,7 @@ namespace MusicCenter.API.Core
 
             #region UserCartProduct use cases
             services.AddTransient<ICreateUserCartProductCommand, EfCreateUserCartProductCommand>();
+            services.AddTransient<IDeleteUserCartProductCommand, EfDeleteUserCartProductCommand>();
             #endregion
         }
 

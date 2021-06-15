@@ -43,7 +43,7 @@ namespace MusicCenter.API.Controllers
 
         // DELETE api/<UserUseCasesController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id, [FromServices] IDeleteUserUseCaseCommand command)
+        public IActionResult Delete(int id, [FromServices] IDeleteUserCartProductCommand command)
         {
             _executor.ExecuteCommand(command, id);
 
