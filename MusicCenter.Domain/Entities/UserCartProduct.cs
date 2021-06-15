@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicCenter.Domain.Entities
 {  
-    // Klasa ne nasledjuje Entity jer nije neophodno da sadrzi sve informacije koje Entity sadrzi, tj. nije neophodno obeleziti stavku u korpi kao obrisanu (soft delete), kao ni da se prati kad je dodata, itd...
+    // Klasa ne nasledjuje Entity jer sam odlucio da nije od preterane vaznosti da cuvam kad je dodata stavka u korpu, da se obelezi kao soft delete stavka itd.
     public class UserCartProduct
     {
         public int Id { get; set; }
