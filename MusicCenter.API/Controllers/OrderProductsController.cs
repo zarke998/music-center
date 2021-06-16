@@ -74,5 +74,13 @@ namespace MusicCenter.API.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id, [FromServices] IDeleteOrderProductCommand command)
+        {
+            _executor.ExecuteCommand(command, id);
+
+            return NoContent();
+        }
     }
 }
