@@ -45,17 +45,7 @@ namespace MusicCenter.API.Controllers
         }
 
         // POST api/<UserController>
-        [HttpPost]
-        public IActionResult Post([FromBody] CreateUserDto dto,
-                                [FromServices] ICreateUserCommand command,
-                                [FromServices] CreateUserValidator validator)
-        {
-            validator.ValidateAndThrow(dto);
 
-            _executor.ExecuteCommand(command, dto);
-
-            return StatusCode(StatusCodes.Status201Created);
-        }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
