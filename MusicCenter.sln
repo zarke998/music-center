@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicCenter.EfDataAccess", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicCenter.API", "MusicCenter.API\MusicCenter.API.csproj", "{C953A262-136A-4C8A-B99B-CD63443145B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicCenter.TestingProject", "MusicCenter.TestingProject\MusicCenter.TestingProject.csproj", "{061B1FB2-91C0-4854-B13A-F9FF9CBE2FF6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{C953A262-136A-4C8A-B99B-CD63443145B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C953A262-136A-4C8A-B99B-CD63443145B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C953A262-136A-4C8A-B99B-CD63443145B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{061B1FB2-91C0-4854-B13A-F9FF9CBE2FF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{061B1FB2-91C0-4854-B13A-F9FF9CBE2FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{061B1FB2-91C0-4854-B13A-F9FF9CBE2FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{061B1FB2-91C0-4854-B13A-F9FF9CBE2FF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
