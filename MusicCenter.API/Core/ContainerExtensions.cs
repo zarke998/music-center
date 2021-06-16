@@ -111,6 +111,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<IGetOrderProductsQuery, EfGetOrderProductsQuery>();
             services.AddTransient<IGetSingleOrderProductQuery, EfGetSingleOrderProductQuery>();
             services.AddTransient<ICreateOrderProductCommand, EfCreateOrderProductCommand>();
+            services.AddTransient<IUpdateOrderProductCommand, EfUpdateOrderProductCommand>();
             #endregion
         }
         public static void AddValidators(this IServiceCollection services)
@@ -135,6 +136,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<UpdateOrderValidator>();
 
             services.AddTransient<CreateOrderProductValidator>();
+            services.AddTransient<UpdateOrderProductValidator>();
         }
         public static void AddApplicationActor(this IServiceCollection services)
         {
