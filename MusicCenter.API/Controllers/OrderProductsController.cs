@@ -7,6 +7,7 @@ using MusicCenter.Application.Commands.OrderCommands;
 using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries.OrderLineQueries;
+using MusicCenter.Application.Queries.OrderProductQueries;
 using MusicCenter.Application.Queries.OrderQueries;
 using MusicCenter.Application.Queries.ProductQueries;
 using MusicCenter.Application.Searches;
@@ -40,6 +41,12 @@ namespace MusicCenter.API.Controllers
         public IActionResult Get([FromQuery] OrderProductSearch search, [FromServices] IGetOrderProductsQuery query)
         {
             return Ok(_executor.ExecuteQuery(query, search));
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get([FromServices] IGetSingleOrderProductQuery query, int id)
+        {
+            return Ok(_executor.ExecuteQuery(query, id));
         }
     }
 }
