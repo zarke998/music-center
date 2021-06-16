@@ -41,6 +41,12 @@ namespace MusicCenter.API.Controllers
             return Ok(_executor.ExecuteQuery(query, search));
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get([FromServices] IGetSingleOrderQuery query, int id)
+        {
+            return Ok(_executor.ExecuteQuery(query, id));
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] CreateOrderDto dto,
                         [FromServices] ICreateOrderCommand command,

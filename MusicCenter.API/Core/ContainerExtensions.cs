@@ -97,6 +97,7 @@ namespace MusicCenter.API.Core
             #region Order use cases
             services.AddTransient<ICreateOrderCommand, EfCreateOrderCommand>();
             services.AddTransient<IGetOrdersQuery, EfGetOrdersQuery>();
+            services.AddTransient<IGetSingleOrderQuery, EfGetSingleOrderQuery>();
             #endregion
         }
         public static void AddValidators(this IServiceCollection services)
