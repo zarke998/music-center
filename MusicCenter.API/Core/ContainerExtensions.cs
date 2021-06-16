@@ -7,6 +7,7 @@ using MusicCenter.Application;
 using MusicCenter.Application.Commands.BrandCommands;
 using MusicCenter.Application.Commands.CategoryCommands;
 using MusicCenter.Application.Commands.OrderCommands;
+using MusicCenter.Application.Commands.OrderProductCommands;
 using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.Commands.UserCartProductCommands;
 using MusicCenter.Application.Commands.UserCommands;
@@ -25,6 +26,7 @@ using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Commands.BrandCommands;
 using MusicCenter.Implementation.Commands.CategoryCommands;
 using MusicCenter.Implementation.Commands.OrderCommands;
+using MusicCenter.Implementation.Commands.OrderProductCommands;
 using MusicCenter.Implementation.Commands.ProductCommands;
 using MusicCenter.Implementation.Commands.UserCartProductCommands;
 using MusicCenter.Implementation.Commands.UserCommands;
@@ -108,6 +110,7 @@ namespace MusicCenter.API.Core
             #region OrderProduct use cases
             services.AddTransient<IGetOrderProductsQuery, EfGetOrderProductsQuery>();
             services.AddTransient<IGetSingleOrderProductQuery, EfGetSingleOrderProductQuery>();
+            services.AddTransient<ICreateOrderProductCommand, EfCreateOrderProductCommand>();
             #endregion
         }
         public static void AddValidators(this IServiceCollection services)
@@ -130,6 +133,8 @@ namespace MusicCenter.API.Core
 
             services.AddTransient<CreateOrderValidator>();
             services.AddTransient<UpdateOrderValidator>();
+
+            services.AddTransient<CreateOrderProductValidator>();
         }
         public static void AddApplicationActor(this IServiceCollection services)
         {

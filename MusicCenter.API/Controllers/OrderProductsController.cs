@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
 using MusicCenter.Application.Commands.OrderCommands;
+using MusicCenter.Application.Commands.OrderProductCommands;
 using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.DTO;
 using MusicCenter.Application.Queries.OrderLineQueries;
@@ -47,6 +48,18 @@ namespace MusicCenter.API.Controllers
         public IActionResult Get([FromServices] IGetSingleOrderProductQuery query, int id)
         {
             return Ok(_executor.ExecuteQuery(query, id));
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] CreateOrderProductDto dto,
+                [FromServices] ICreateOrderProductCommand command,
+                [FromServices] CreateOrderProductValidator validator)
+        {
+            validator.ValidateAndThrow(dto);
+
+            _executor.ExecuteCommand(command, dto);
+
+            return StatusCode(StatusCodes.Status201Created);
         }
     }
 }
