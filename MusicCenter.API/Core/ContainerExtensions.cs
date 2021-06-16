@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using MusicCenter.Application;
 using MusicCenter.Application.Commands.BrandCommands;
 using MusicCenter.Application.Commands.CategoryCommands;
+using MusicCenter.Application.Commands.OrderCommands;
 using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.Commands.UserCartProductCommands;
 using MusicCenter.Application.Commands.UserCommands;
@@ -20,6 +21,7 @@ using MusicCenter.Application.Queries.UserUseCasesQueries;
 using MusicCenter.EfDataAccess;
 using MusicCenter.Implementation.Commands.BrandCommands;
 using MusicCenter.Implementation.Commands.CategoryCommands;
+using MusicCenter.Implementation.Commands.OrderCommands;
 using MusicCenter.Implementation.Commands.ProductCommands;
 using MusicCenter.Implementation.Commands.UserCartProductCommands;
 using MusicCenter.Implementation.Commands.UserCommands;
@@ -89,6 +91,10 @@ namespace MusicCenter.API.Core
             #region UseCaseLog use cases
             services.AddTransient<IGetUseCaseLogsQuery, EfGetUseCaseLogsQuery>();
             #endregion
+
+            #region Order use cases
+            services.AddTransient<ICreateOrderCommand, EfCreateOrderCommand>();
+            #endregion
         }
         public static void AddValidators(this IServiceCollection services)
         {
@@ -107,6 +113,8 @@ namespace MusicCenter.API.Core
             services.AddTransient<CreateUserUseCaseValidator>();
 
             services.AddTransient<CreateUserCartProductValidator>();
+
+            services.AddTransient<CreateOrderValidator>();
         }
         public static void AddApplicationActor(this IServiceCollection services)
         {

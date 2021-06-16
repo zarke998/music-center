@@ -1,0 +1,50 @@
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MusicCenter.Application;
+using MusicCenter.Application.Commands.OrderCommands;
+using MusicCenter.Application.Commands.ProductCommands;
+using MusicCenter.Application.DTO;
+using MusicCenter.Application.Queries.ProductQueries;
+using MusicCenter.Application.Searches;
+using MusicCenter.EfDataAccess;
+using MusicCenter.Implementation.Validators;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace MusicCenter.API.Controllers
+{
+    [Authorize]
+    [Route("api/[controller]")]
+    [ApiController]
+    public class OrderController : ControllerBase
+    {
+        private readonly MusicCenterDbContext _context;
+
+        private readonly UseCaseExecutor _executor;
+
+        public OrderController(MusicCenterDbContext context, UseCaseExecutor executor)
+        {
+            this._context = context;
+            _executor = executor;
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] CreateOrderDto dto,
+                        [FromServices] ICreateOrderCommand command,
+                        [FromServices] CreateOrderValidator validator)
+        {
+            validator.ValidateAndThrow(dto);
+
+            _executor.ExecuteCommand(command, dto);
+
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+    }
+}
