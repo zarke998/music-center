@@ -68,6 +68,9 @@ namespace MusicCenter.API.Controllers
                                 [FromServices] IUpdateOrderProductCommand command,
                                 [FromServices] UpdateOrderProductValidator validator)
         {
+            if (!_context.OrderProducts.Any(op => op.Id == dto.Id))
+                return NotFound();
+
             dto.Id = id;
             validator.ValidateAndThrow(dto);
 

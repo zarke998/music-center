@@ -70,6 +70,9 @@ namespace MusicCenter.API.Controllers
                                 [FromServices] IUpdateBrandCommand command,
                                 [FromServices] UpdateBrandValidator validator)
         {
+            if (!_context.Brands.Any(b => b.Id == dto.Id)) 
+                return NotFound();
+
             dto.Id = id;
             validator.ValidateAndThrow(dto);
 

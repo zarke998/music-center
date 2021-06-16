@@ -56,6 +56,9 @@ namespace MusicCenter.API.Controllers
                                 [FromServices] IUpdateUserCommand command,
                                 [FromServices] UpdateUserValidator validator)
         {
+            if (!_context.Users.Any(u => u.Id == dto.Id))
+                return NotFound();
+
             dto.Id = id;
             validator.ValidateAndThrow(dto);
 

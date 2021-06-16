@@ -66,6 +66,9 @@ namespace MusicCenter.API.Controllers
                                 [FromServices] IUpdateCategoryCommand command,
                                 [FromServices] UpdateCategoryValidator validator)
         {
+            if (!_context.Categories.Any(c => c.Id == dto.Id))
+                return NotFound();
+
             dto.Id = id;
             validator.ValidateAndThrow(dto);
 

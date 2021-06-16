@@ -67,6 +67,9 @@ namespace MusicCenter.API.Controllers
                                         [FromServices] IUpdateProductCommand command,
                                         [FromServices] UpdateProductValidator validator)
         {
+            if (!_context.Products.Any(p => p.Id == dto.Id))
+                return NotFound();
+
             dto.Id = id;
             validator.ValidateAndThrow(dto);
 
