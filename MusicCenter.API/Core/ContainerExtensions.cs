@@ -99,6 +99,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<IGetOrdersQuery, EfGetOrdersQuery>();
             services.AddTransient<IGetSingleOrderQuery, EfGetSingleOrderQuery>();
             services.AddTransient<IUpdateOrderCommand, EfUpdateOrderCommand>();
+            services.AddTransient<IDeleteOrderCommand, EfDeleteOrderCommand>();
             #endregion
         }
         public static void AddValidators(this IServiceCollection services)
