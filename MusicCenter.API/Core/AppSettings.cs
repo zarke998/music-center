@@ -10,5 +10,7 @@ namespace MusicCenter.API.Core
         public string JwtIssuer { get; set; }
         public string JwtSecretKey { get; set; }
         public string ApplicationInstance { get; set; }
+        public string AppEmail { get; set; }
+        public string AppPassword { get; set; }
     }
 }

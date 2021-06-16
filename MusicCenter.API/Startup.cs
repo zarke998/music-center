@@ -15,6 +15,8 @@ using MusicCenter.Implementation.Queries.ProductQueries;
 using MusicCenter.Application.Queries;
 using MusicCenter.Application;
 using MusicCenter.Implementation.Loggers;
+using MusicCenter.Application.Email;
+using MusicCenter.Implementation.Email;
 
 namespace MusicCenter.API
 {
@@ -42,6 +44,7 @@ namespace MusicCenter.API
             services.AddValidators();
             services.AddJwt(appSettings);
             services.AddSwagger();
+            services.AddTransient<IEmailSender>(provider => new SmtpEmailSender(appSettings.AppEmail, appSettings.AppPassword));
 
             services.AddHttpContextAccessor();
             services.AddApplicationActor();
