@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MusicCenter.Application.Commands.UserCommands;
 using MusicCenter.Application.DTO;
+using MusicCenter.Application.Email;
 using MusicCenter.Domain.Entities;
 using MusicCenter.EfDataAccess;
 using System;
@@ -15,14 +16,16 @@ namespace MusicCenter.Implementation.Commands.UserCommands
     {
         private readonly MusicCenterDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IEmailSender _emailSender;
 
         public int Id => 17;
         public string Name => "Ef Create User";
 
-        public EfCreateUserCommand(MusicCenterDbContext context, IMapper mapper)
+        public EfCreateUserCommand(MusicCenterDbContext context, IMapper mapper, IEmailSender emailSender)
         {
             this._context = context;
             this._mapper = mapper;
+            _emailSender = emailSender;
         }
 
         public void Execute(CreateUserDto dto)
@@ -31,6 +34,13 @@ namespace MusicCenter.Implementation.Commands.UserCommands
 
             _context.Users.Add(user);
             _context.SaveChanges();
+
+            _emailSender.Send(new SendEmailDto()
+            {
+                SendTo = user.Email,
+                Subject = "MusicCenter - Registration",
+                Content = "You have successfully registered."
+            });
         }
     }
 }

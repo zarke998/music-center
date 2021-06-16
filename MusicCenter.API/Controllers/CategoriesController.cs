@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
 using MusicCenter.Application.Commands.CategoryCommands;
@@ -44,6 +45,7 @@ namespace MusicCenter.API.Controllers
         }
 
         // POST api/<CategoriesController>
+        [Authorize]
         [HttpPost]
         public IActionResult Post([FromBody] CategoryDto dto,
                                     [FromServices] ICreateCategoryCommand command,
@@ -57,6 +59,7 @@ namespace MusicCenter.API.Controllers
         }
 
         // PUT api/<CategoryController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Put(int id,
                                 [FromBody] CategoryDto dto,
@@ -72,6 +75,7 @@ namespace MusicCenter.API.Controllers
         }
 
         // DELETE api/<CategoryController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id, [FromServices] IDeleteCategoryCommand command)
         {

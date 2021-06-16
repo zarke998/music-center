@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace MusicCenter.API.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class BrandsController : ControllerBase
@@ -49,6 +49,7 @@ namespace MusicCenter.API.Controllers
         }
 
         // POST api/<BrandsController>
+        [Authorize]
         [HttpPost]
         public IActionResult Post([FromBody] CreateBrandDto dto,
                                     [FromServices] ICreateBrandCommand command,
@@ -62,6 +63,7 @@ namespace MusicCenter.API.Controllers
         }
 
         // PUT api/<BrandsController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Put(int id, 
                                 [FromBody] UpdateBrandDto dto,
@@ -77,6 +79,7 @@ namespace MusicCenter.API.Controllers
         }
 
         // DELETE api/<BrandsController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id, [FromServices] IDeleteBrandCommand command)
         {

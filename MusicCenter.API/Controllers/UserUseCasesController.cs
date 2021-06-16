@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
@@ -44,6 +45,7 @@ namespace MusicCenter.API.Controllers
         }
 
         // POST api/<UserUseCasesController>
+        [Authorize]
         [HttpPost]
         public IActionResult Post([FromBody] CreateUserUseCaseDto dto,
                                 [FromServices] ICreateUserUseCaseCommand command,
@@ -58,6 +60,7 @@ namespace MusicCenter.API.Controllers
 
         // DELETE api/<UserUseCasesController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromServices] IDeleteUserUseCaseCommand command)
         {
             _executor.ExecuteCommand(command, id);

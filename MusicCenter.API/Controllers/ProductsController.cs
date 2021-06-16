@@ -18,7 +18,6 @@ using System.Threading.Tasks;
 
 namespace MusicCenter.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -49,6 +48,7 @@ namespace MusicCenter.API.Controllers
 
         // POST api/<ProductsController>
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] CreateProductDto dto,
                                 [FromServices] ICreateProductCommand command,
                                 [FromServices] CreateProductValidator validator)
@@ -62,6 +62,7 @@ namespace MusicCenter.API.Controllers
 
         // PUT api/<ProductsController>/5
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody] UpdateProductDto dto,
                                         [FromServices] IUpdateProductCommand command,
                                         [FromServices] UpdateProductValidator validator)
@@ -76,6 +77,7 @@ namespace MusicCenter.API.Controllers
 
         // DELETE api/<ProductsController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromServices] IDeleteProductCommand command)
         {
             var productExists = _context.Products.Any(p => p.Id == id);

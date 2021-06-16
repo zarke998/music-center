@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
@@ -49,6 +50,7 @@ namespace MusicCenter.API.Controllers
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id,
                                 [FromBody] UpdateUserDto dto,
                                 [FromServices] IUpdateUserCommand command,
@@ -64,6 +66,7 @@ namespace MusicCenter.API.Controllers
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromServices] IDeleteUserCommand command)
         {
             _executor.ExecuteCommand(command, id);

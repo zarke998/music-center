@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 
 namespace MusicCenter.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderProductsController : ControllerBase
@@ -51,6 +50,7 @@ namespace MusicCenter.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] CreateOrderProductDto dto,
                 [FromServices] ICreateOrderProductCommand command,
                 [FromServices] CreateOrderProductValidator validator)
@@ -63,6 +63,7 @@ namespace MusicCenter.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody] UpdateOrderProductDto dto,
                                 [FromServices] IUpdateOrderProductCommand command,
                                 [FromServices] UpdateOrderProductValidator validator)
@@ -76,6 +77,7 @@ namespace MusicCenter.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromServices] IDeleteOrderProductCommand command)
         {
             _executor.ExecuteCommand(command, id);

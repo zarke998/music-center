@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Application;
@@ -30,6 +31,7 @@ namespace MusicCenter.API.Controllers
         }
         // POST api/<UserUseCasesController>
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] CreateUserCartProductDto dto,
                                 [FromServices] ICreateUserCartProductCommand command,
                                 [FromServices] CreateUserCartProductValidator validator)
@@ -43,6 +45,7 @@ namespace MusicCenter.API.Controllers
 
         // DELETE api/<UserUseCasesController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id, [FromServices] IDeleteUserCartProductCommand command)
         {
             _executor.ExecuteCommand(command, id);
