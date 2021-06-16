@@ -6,6 +6,7 @@ using MusicCenter.Application;
 using MusicCenter.Application.Commands.OrderCommands;
 using MusicCenter.Application.Commands.ProductCommands;
 using MusicCenter.Application.DTO;
+using MusicCenter.Application.Queries.OrderQueries;
 using MusicCenter.Application.Queries.ProductQueries;
 using MusicCenter.Application.Searches;
 using MusicCenter.EfDataAccess;
@@ -22,16 +23,22 @@ namespace MusicCenter.API.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private readonly MusicCenterDbContext _context;
 
         private readonly UseCaseExecutor _executor;
 
-        public OrderController(MusicCenterDbContext context, UseCaseExecutor executor)
+        public OrdersController(MusicCenterDbContext context, UseCaseExecutor executor)
         {
             this._context = context;
             _executor = executor;
+        }
+
+        [HttpGet]
+        public IActionResult Get([FromQuery] OrderSearch search, [FromServices] IGetOrdersQuery query)
+        {
+            return Ok(_executor.ExecuteQuery(query, search));
         }
 
         [HttpPost]

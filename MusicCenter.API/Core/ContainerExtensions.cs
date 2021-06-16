@@ -13,6 +13,7 @@ using MusicCenter.Application.Commands.UserCommands;
 using MusicCenter.Application.Commands.UserUseCaseCommands;
 using MusicCenter.Application.Queries.BrandQueries;
 using MusicCenter.Application.Queries.CategoryQueries;
+using MusicCenter.Application.Queries.OrderQueries;
 using MusicCenter.Application.Queries.ProductQueries;
 using MusicCenter.Application.Queries.UseCaseLogQueries;
 using MusicCenter.Application.Queries.UserQueries;
@@ -28,6 +29,7 @@ using MusicCenter.Implementation.Commands.UserCommands;
 using MusicCenter.Implementation.Commands.UserUseCaseCommands;
 using MusicCenter.Implementation.Queries.BrandQueries;
 using MusicCenter.Implementation.Queries.CategoryQueries;
+using MusicCenter.Implementation.Queries.OrderQueries;
 using MusicCenter.Implementation.Queries.ProductQueries;
 using MusicCenter.Implementation.Queries.UseCaseLogQueries;
 using MusicCenter.Implementation.Queries.UserQueries;
@@ -94,6 +96,7 @@ namespace MusicCenter.API.Core
 
             #region Order use cases
             services.AddTransient<ICreateOrderCommand, EfCreateOrderCommand>();
+            services.AddTransient<IGetOrdersQuery, EfGetOrdersQuery>();
             #endregion
         }
         public static void AddValidators(this IServiceCollection services)

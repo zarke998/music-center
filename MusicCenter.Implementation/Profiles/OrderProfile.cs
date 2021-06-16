@@ -14,6 +14,7 @@ namespace MusicCenter.Implementation.Profiles
         public OrderProfile()
         {
             CreateMap<CreateOrderDto, Order>();
+            CreateMap<Order, OrderDto>();
         }
     }
 }
