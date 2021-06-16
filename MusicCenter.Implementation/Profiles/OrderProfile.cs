@@ -15,6 +15,9 @@ namespace MusicCenter.Implementation.Profiles
         {
             CreateMap<CreateOrderDto, Order>();
             CreateMap<Order, OrderDto>();
+
+            CreateMap<UpdateOrderDto, Order>()
+                .ForAllMembers(opt => opt.PreCondition((dto, prod, srcMemb) => srcMemb != null));
         }
     }
 }

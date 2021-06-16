@@ -59,5 +59,18 @@ namespace MusicCenter.API.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] UpdateOrderDto dto,
+                                [FromServices] IUpdateOrderCommand command,
+                                [FromServices] UpdateOrderValidator validator)
+        {
+            dto.Id = id;
+            validator.ValidateAndThrow(dto);
+
+            _executor.ExecuteCommand(command, dto);
+
+            return NoContent();
+        }
+
     }
 }

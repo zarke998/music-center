@@ -98,6 +98,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<ICreateOrderCommand, EfCreateOrderCommand>();
             services.AddTransient<IGetOrdersQuery, EfGetOrdersQuery>();
             services.AddTransient<IGetSingleOrderQuery, EfGetSingleOrderQuery>();
+            services.AddTransient<IUpdateOrderCommand, EfUpdateOrderCommand>();
             #endregion
         }
         public static void AddValidators(this IServiceCollection services)
@@ -119,6 +120,7 @@ namespace MusicCenter.API.Core
             services.AddTransient<CreateUserCartProductValidator>();
 
             services.AddTransient<CreateOrderValidator>();
+            services.AddTransient<UpdateOrderValidator>();
         }
         public static void AddApplicationActor(this IServiceCollection services)
         {
